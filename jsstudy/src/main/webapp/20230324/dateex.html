@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date 객체</title>
+</head>
+<body>
+<script type="text/javascript">
+	now = new Date()
+	document.write(`${now}<br>`)	//toString() 호출
+	document.write(`${now.toGMTString()}<br>`)//표준시. 영국시간
+	document.write(`${now.toLocaleString()}<br>`)//지역일시. 지역에 맞는 형식 출력
+	document.write(`${now.toString()}<br>`)
+	document.write(`년도: ${now.getYear()}<br>`) //1900년도 기준
+	document.write(`년도: ${now.getFullYear()}<br>`)//년도 4자리
+	document.write(`월(0~11): ${now.getMonth()+1}<br>`)//0:1월.
+	document.write(`일: ${now.getDate()}<br>`)
+	document.write(`월(0:일~6:토): ${now.getDay()}<br>`)
+	document.write(`시간: ${now.getHours()}<br>`)
+	document.write(`분: ${now.getMinutes()}<br>`)
+	document.write(`초: ${now.getSeconds()}<br>`)
+	//1970년도 이후부터 now까지 밀리초 리턴
+	document.write(`<br>밀리초: ${now.getTime()}<br>`)
+	now.setTime(now.getTime()+(1000*60*60*24))
+	document.write(`다음날: ${now}<br>`)
+	//2023년 12월 25일 요일 출력하기
+	date = new Date(2023,12-1,25)
+	document.write(`${date}<br>`)
+	document.write(`요일(0:d일~6:토):${date.getDay()}<br>`)
+</script>
+</body>
+</html>

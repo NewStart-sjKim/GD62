@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>마우스 이벤트를 이용한 이미지 변경</title>
+</head>
+<body>
+<table>
+	<tr><td align="center">
+	<!-- onmouseover : 마우스 커서가 a태그 영역내에 들어온 경우
+		 onmouseout  : 마우스 커서가 a태그 영역내에서 밖으로 나간 경우
+	 -->
+		<a href="#" onmouseover="mover(0)" onmouseout="mout(0)">
+		<img name="m0" src="img/0_out.jpg"></a>
+	</td></tr>
+	<tr><td align="center">
+		<a href="#" onmouseover="mover(1)" onmouseout="mout(1)">
+		<img name="m1" src="img/1_out.jpg"></a>
+	</td></tr>
+	<tr><td align="center">
+		<a href="#" onmouseover="mover(2)" onmouseout="mout(2)">
+		<img name="m2" src="img/2_out.jpg"></a>
+	</td></tr>
+</table>
+<script type="text/javascript">
+	imgOver = new Array(3);//배열 생성
+	imgOut = new Array(3);
+	for(let i=0;i<imgOver.length;i++){
+		imgOver[i] = new Image(); // 이미지객체 생성. 화면에 보여지지는 않음.
+		imgOut[i] = new Image();
+		imgOver[i].src = "img/"+i+"_over.jpg";
+		imgOut[i] .src = "img/"+i+"_out.jpg";
+	}
+	function mover(n){
+		//document.images : 문서(document) 내부에 존재하는 이미지 객체들.
+//							<img...> 태그를 배열로 저장
+		document.images[n].src = imgOver[n].src
+	}
+	function mout(n){
+		document.images[n].src = imgOut[n].src
+	}
+</script>
+</body>
+</html>

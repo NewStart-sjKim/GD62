@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>open 함수</title>
+</head>
+<body>
+<!-- 
+	href 속성 : 다른 페이지의 url 값
+		  javascript 				: 를 써주면 javascript의 영역 처리
+	      javascript:open_win() 	: 새창열기 부분을 클릭하면 자바스크립트 function 중
+		   								open_win() 함수 호출
+ -->
+<a href="javascript:open_win()">새창열기</a>
+<a href="javascript:open_win2('windowex1.html')">windowex1.html 열기</a>
+<a href="javascript:close_win()">새창닫기</a>
+<form name="f">
+	아 이 디	: <input type="text" name="id" id="id"><br>
+	비밀번호	: <input type="password" name="pw" id="pw"><br>
+</form>
+<script type="text/javascript">
+	let nw
+	function open_win2(url){
+		nw = open(url,"open","width=600,height=200,menubar=no,top=200,left=500")
+		//windowex1.html 페이지를 open 시 현재 페이지에서 입력한 아이디와 비밀번호를 보여주기
+		// 아이디,비밀번호 : hong,1234
+		//nw.onload 이벤트 사용
+		nw.onload=function(){
+			 data = document.f.id.value + "," + f.pw.value //name 속성 이용 
+			/* data = id.value + "," + pw.value //id 속성 이용 */
+			nw.document.f.echo.value = data
+		}
+	}
+	function open_win(){
+		/* 
+			open("새창에 띄워줄 페이지",새창의이름,옵션)
+			옵션 : width=600	 : 새창의가로길이
+				  height=200 : 새창의가로길이
+				  menubar=no : menu 바 안보이기
+				  top=200,left=200 : 창이 보여질 위치
+			nw	: 새창의 window 객체임.
+			close() : 창 닫기
+		*/
+		nw = open("","open","width=600,height=200,menubar=no,top=200,left=200")
+		nw.document.write('새로운 윈도우 입니다.<br>');
+		nw.document.write("windowex2.html 페이지의 open 함수로 열린 창입니다.<br>")
+	}
+	function close_win(){
+		nw.close() //nw가 관리하는 새창을 닫기.
+		//self : 현재 창을 의미. 생략 가능
+		self.close()		//현재창 닫기
+	}
+</script>
+</body>
+</html>

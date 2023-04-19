@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>개선된 for 문</title>
+</head>
+<body>
+<script type="text/javascript">
+/*
+ * const : 상수.
+   []	 : 배열.(list)
+ */
+	const todos = ["우유구매","업무메일 확인","필라테스수업"]
+	for(const i in todos){
+		//i : index 값
+		console.log(`${i}번째 할 일:${todos[i]}`)
+		console.log('${i}번째 할 일:'+todos[i])
+	}
+   for(const todo of todos){
+	   console.log(`오늘의 할일:${todo}`)
+   
+   }for(let i=0;i<todos.length;i++){
+	   console.log(`${i}번째 할 일:${todos[i]}`)
+   }
+</script>
+</body>
+</html>

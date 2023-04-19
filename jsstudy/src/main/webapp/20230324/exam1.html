@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>달력 출력하기</title>
+<style type="text/css">
+	table{width:100%; border-collapse: collapse;}
+	th,td{border : 3px solid #bcbcbc; text-align: center; padding: 8px;}
+	th{background-color: #e2e2e2; color:#111111;}
+	td{background-color: #f2f2f2;}
+	caption{color:#111111; font-size: 20px; background-color: #ffffff;}
+	.text-red{color:red;}
+	.text-blue{color:blue;}
+</style>
+<script type="text/javascript">
+	function show_cal(){
+		let year = parseInt(y.value)
+		let mon = parseInt(m.value)
+		let fcal = new Date(year,mon-1,1)//첫번째 일자
+		let lcal = new Date(year,mon,0)	//마지막 일자
+		html = "<table><caption>"+year+"년"+mon+"일</caption>"
+		html += "<tr><th>일</th><th>월</th><th>화</th>"
+			   +"<th>수</th><th>목</th><th>금</th><th>토</th></tr>";
+		cal.innerHTML=html
+		//첫번째 일자의 요일
+		let week = fcal.getDay()
+		console.log(week)
+		let day = 0
+		for(let i=0;i<6;i++){
+			html +="<tr>"
+			for(let j=0;j<7;j++){
+				if(j==0) html += "<td class='text-red'>"
+				else if(j==6) html += "<td class='text-blue'>"
+				else html += "<td>"
+				if(i==0 && j < week) html += "&nbsp";
+				else {
+					if(day < lcal.getDate()) html += ++day;
+					else html += "&nbsp";
+				}
+				html +="</td>"
+			}
+			html +="</tr>"
+			if(day >= lcal.getDate()) break;
+		}
+		cal.innerHTML = html;
+		}
+</script>
+</head>
+<body>
+<select id="y"><option>2020</option><option>2021</option><option>2022</option>
+			   <option>2023</option><option>2024</option></select>
+<select id="m"><option value="1">1월</option><option value="2">2월</option>
+	<option value="3">3월</option><option value="4">4월</option>
+	<option value="5">5월</option><option value="6">6월</option>
+	<option value="7">7월</option><option value="8">8월</option>
+	<option value="9">9월</option><option value="10">10월</option>
+	<option value="11">11월</option><option value="12">12월</option></select>
+<input type="button" value="달력보기" onclick="show_cal()"><br>
+<span id="cal"></span>
+</body>
+</html>

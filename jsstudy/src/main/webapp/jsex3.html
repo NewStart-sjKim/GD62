@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	input {text-align: right;}
+</style>
+</head>
+<body>
+<h2>num1의 값을 num2태그에 복사하기</h2>
+<input type="text" id="num1" value="100">
+<input type="text" id="num2">
+<!-- onclik : 버튼을 클릭하면 발생되는 이벤트 -->
+<input type="button"value="복사" onclick="num2.value=num1.value">
+<h2>입력된 숫자까지의 합계 구하기</h2>
+<input type="text" id="num">
+<input type="button" value="전체합계" onclick="hap()"><br>
+전체합계:<input type="text" id="tot">
+짝수합계:<input type="text" id="eventot">
+홀수합계:<input type="text" id="oddtot">
+3/2:<input type="text" id="aaa"><br>
+<script type="text/javascript">
+	function hap(){ //합계 클릭시 호출되는 함수
+		n = num.value
+		s=0
+		e=0
+		os=0
+		for(let i=1;i<=n;i++){ 
+			s+=i
+		if(i%2 == 0) e+=i
+		else os+=i
+		}
+		tot.value=s
+		eventot.value=e
+		oddtot.value=os	
+	}
+//	aaa.value = (int)(1.5) (int) 형이 없음.
+	aaa.value = Math.floor (3/2) // 나보다 작은 근사정수
+</script>
+</body>
+</html>

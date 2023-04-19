@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>객체의 상속</title>
+</head>
+<body>
+<script type="text/javascript">
+	function Animal(name){
+		this.name = name;
+		this.cry = function(){}
+	}
+	function Dog(name){
+		this.base = Animal //부모클래스
+		this.base(name)    //부모클래스 객체 생성
+		this.crt = function(){
+			document.write(this.name + "멍멍<br>")
+		}
+	}
+	function Cat(name){
+		this.base = Animal
+		this.base(name)
+		this.crt = function(){
+			document.write(this.name + "야옹<br>")
+		}
+	}
+	let dog = new Dog("강아지")
+	let cat = new Cat("고양이")
+	dog.cry()
+	cat.cry()
+</script>
+</body>
+</html>

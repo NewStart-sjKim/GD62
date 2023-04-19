@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>window 객체의 3가지 메세지 창</title>
+</head>
+<body>
+<form name="f">
+<!-- this.form : 내가 속한 form 객체, name="f" form 객체를 의미
+	 this.form.echo : form 객체의 하위 태그중 name="echo" 인 객체
+					 <input type="text" name="echo"> 객체를 의미
+ -->
+<input type="radio" name="dbox"
+		onclick="this.form.echo.value=alert('alert 메세지 창 호출')">
+		alert 메세지창 호출<br> <!-- undefined : alert 창은 리턴값이 없음 -->
+<input type="radio" name="dbox"
+		onclick="this.form.echo.value=confirm('confirm 메세지 창 호출')">
+		confirm 메세지창 호출<br>	 <!-- true/false : 확인/취소 논리값을 리턴 -->
+<input type="radio" name="dbox"
+		onclick="this.form.echo.value=prompt('prompt 메세지 창 호출')">
+		prompt 메세지창 호출<br> <!-- 입력된값/빈문자열 : 확인/취소 -->
+<input type="text" name="echo">
+<hr>
+<script>	
+	i=2
+	//eval : 수식계산.3+4*(5-i)
+	//1. (5-i) - 3
+	//2. 4*(5-i) = 12
+	//3. 3+12	= 15
+	document.write("<b>eval(3+4*(5-i))</b>="+eval(3+4*(5-i))+ "<br>")
+	//isNaN : 숫자가 아니니? 숫자가 아닌경우  true,  숫자: false
+	document.write("<b>isNaN('한국')</b>="+isNaN('한국') + "<br>")
+	document.write("<b>isNaN('123')</b>="+isNaN('123') + "<br>")
+	//실수,문자열을 정수형으로 변경
+	//parseInt(숫자형문자열,[진수]) : 숫자형문자열을 진수로 인식하여 숫자로 변환 함수
+	//							  진수 생략시 10진수.
+	document.write("<b>parseInt('10')</b>="+parseInt('10') + "<br>")
+	document.write("<b>parseInt('12',8)</b>="+parseInt('12',8) + "<br>")
+	document.write("<b>parseInt('FF',16)</b>="+parseInt('FF',16) + "<br>")
+</script>
+</form>
+</body>
+</html>

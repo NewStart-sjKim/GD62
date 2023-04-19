@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!-- 
+	name 속성을 이용하여 태그 객체에 접근하기
+	-window.document.form 이름.select 객체의 이름으로 접근
+	-img 태그 객체는 document.img태그 이름으로 접근 가능 
+-->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지 선택하기</title>
+</head>
+<body>
+<form name="f">
+	<table>
+<!--	drawimg(this,document.img2) 
+		onchange 이벤트 : 선택된 값이 변경되는 경우 발생되는 이벤트
+			this : 현재 객체. 이벤트가 발생된 객체. select 객체.
+			document.img2 : <img name="img2" ...> 인 객체
+-->
+	<tr><td><select name="s" onchange="drawimg()">
+		<option value="strawberry.gif">딸기</option>
+		<option value="banana.jpg">바나나</option>
+		<option value="apple.gif">사과</option>
+	</select></td>
+	<td><img name="img2" src="img/strawberry.gif" width="100" height="120">
+	</td></tr>
+	</table>
+</form>
+<script type="text/javascript">
+/* 	function drawimg(sel,img){
+		img.src="img/"+sel.value
+	} */
+	function drawimg(){
+		//document.f.s : select 객체
+		document.img2.src="img/"+document.f.s.value
+	}
+</script>
+</body>
+</html>

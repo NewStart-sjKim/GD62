@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지 이동하기</title>
+<style type="text/css">
+	.droptarget{
+		float : left;		min-width : 400px;
+		min-height : 35px;  margin : 15px;
+		padding : 10px;		border : 1px solid #aaaaaa;
+		overflow: auto;
+	}
+</style>
+</head>
+<body>
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+	<img src="img/apple.gif" ondragstart="dragStart(event)" ondragend="dragEnd(event)"
+	 	 draggable="true" id="dragtarget1" width="100">
+	<img src="img/apple.gif" ondragstart="dragStart(event)" ondragend="dragEnd(event)"
+		 draggable="true" id="dragtarget2" width="100">
+	<p ondragstart="dragStart(event)" ondragend="dragEnd(event)"
+		  draggable="true" id="dragtarget3">이동해주세요</p>
+		  <h1 ondragstart="dragStart(event)" ondragend="dragEnd(event)"
+		  draggable="true" id="dragtarget4">이동해주세요</h1>
+</div>
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+</div>
+<p id="demo1"></p>
+<p id="demo2"></p>
+<script type="text/javascript">
+	function dragStart(event){
+		//Text 이름으로 event.target.id를 설정
+		//event.target : 이벤트가 발생되는 객체 dragtarget4
+		//id : dragtarget1,dragtarget2,dragtarget3
+		event.dataTransfer.setData("Text",event.target.id);
+		//document.querySelector : ECMA6 이후에 사용 가능한 함수
+		//				이전 버전의 함수 document.getElementById("damo1")
+		//getElementById("demo1") : id 속성 값이 demo1 인 태그 선택
+		//document.querySelector("#demo1") : id+"demo1" 태그 선택
+		document.querySelector("#demo1").innerHTML = "이동 시작합니다"
+	}
+	function dragEnd(event){
+		document.querySelector("#demo1").innerHTML = "이동 하였습니다"
+	}
+	function allowDrop(event){
+		event.preventDefault();//기본이벤트 기능 취소
+		document.querySelector("#demo2").innerHTML = "drag over 시작합니다."
+	}
+	//event.target : 이벤트 발생 태그.div 태그
+	function drop(event){
+		event.preventDefault();
+		//data : 이동하기위한 태그의 id 속성값.
+		var data = event.dataTransfer.getData("Text");
+		//appendChild : 객체를 추가
+		event.target.appendChild(document.getElementById(data));
+		document.querySelector("#demo2").innerHTML = "drag drop 입니다.";
+	}
+</script>
+</body>
+</html>

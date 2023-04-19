@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- webapp/test4/test.html   
+   Number  클래스의 메서드를 추가하여 세자리마다 ,출력하기 -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+Number.prototype.printComma = function(){
+   let numStr = String(this); //입력된 값을 문자열로 변환
+   let len = numStr.length //문자열의 길이
+   if (len < 3) return numStr; //길이가 3 미만일시 그대로 반환
+   let fCom = len % 3; //첫 번째 쉼표를 찍을 위치 계산
+   let fPart = numStr.substr(0,fCom); //첫 번째 쉼표 이전의 문자열, 0번 인덱스부터 fCom까지의 문자
+   let restIndex = fCom; //나머지 문자열을 3자리씩 자르기 위한 인덱스 계산
+   let parts = []; //자른 문자열 저장할 배열
+   if (fPart.length > 0){ //첫 번째 쉼표 이전의 문자열이 있으면 배열에 추가
+      parts.push(fPart);
+   } 
+   while(restIndex < len) {//3자리씩 자른 나머지 문자열을 배열에 추가
+      parts.push(numStr.substr(restIndex,3));
+      restIndex +=3;
+   }
+   return parts.join(","); // 쉼표로 구분된 문자열 반환
+   
+   
+}
+document.write((1234567890).printComma(),"<br>") //1,234,567,890
+document.write((123).printComma(),"<br>") //123
+
+/* //printComma 메서드 추가.
+ Number.prototype.printComma = function() {
+	   let num = this.toString();
+	   let output = "";
+	   let i = num.length - 3;
+	   while(i > 0) {
+		   output = "," + num.substr(i,3)+output;
+		   i -=3;
+	   }
+	   output = num.substr(0,3+i) + output;
+	   return output;
+ }
+ //printComma2 메서드 추가 : 정규식 이용하기
+ Number.prototype.printComma2 = function() {
+	   let num = this.toString(); //문자열
+	   -? : - 문자가 0또는 1개
+	  \d+ : 숫자 한개이상
+	\d{3} : 숫자 3개
+	  \d* : 숫자 0개 이상
+	   let pattern = /(-?\d+)(\d{3})/;
+	   while(pattern.test(num))
+			num = num.replace(pattern,"$1,$2");
+	   return num;
+ }
+ document.write((1234567890).printComma(),"<br>")
+ document.write((123).printComma(),"<br>")
+ document.write((1234567890).printComma2(),"<br>")
+ document.write((123).printComma2(),"<br>") */
+
+</script>
+</body>
+</html>

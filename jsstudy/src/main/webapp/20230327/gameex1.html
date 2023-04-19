@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--
+	1. 자바스크립트에서 객체 생성하기
+	2. 태그 위치 지정
+	3. 이벤트 처리.
+	4. setInterval() : 지정된 시간 간격으로 계속 메서드 호출
+	   clearInterval(): setInterval() 해제.
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글자잡기 게임</title>
+<script type="text/javascript">
+	function nextRandomInteger(limit){
+		return Math.round(Math.random() * limit); // 0 ~ limit 사이의 임의의 수 리턴
+	}
+	function randomSpeed(maxSpeed){
+		return Math.random() * maxSpeed - Math.random() * maxSpeed;
+	}
+	let canvasWidth = 700; // A 글자가 움직일수 있는 화면의 가로 범위값
+	let canvasHeight = 500;// A 글자가 움직일수 있는 화면의 가로 범위값
+	let total = 10;
+	function MovingText(){ //클래스. 사용자 정의한 객체 .new MovintText() 객체생성
+		this.x = nextRandomInteger(canvasWidth); // 맴버변수. 0~700 사이의 임의의 수
+		this.y = nextRandomInteger(canvasHeight);// 맴버변수. 0~500 사이의 임의의 수
+		this.vX = randomSpeed(2);// -2 ~ 2사이의 임의의 값. 이동속도.
+		this.vY = randomSpeed(2);// -2 ~ 2사이의 임의의 값
+		//<h1>A</h1>
+		this.body = document.createElement("h1");// h1태그 생성
+		//<h1>A</h1>
+		this.body.innerHTML = "A";
+		//<h1 style='background-color:white'>A</h1>
+		<h1 style='background-color:white'>A</h1>
+		//setAttribute : 속성 등록을 위한 함수	
+		this.body.setAttribute("style","background-color:white");// style 속성설정
+		//<h1 style='background-color:white; position:absolute'>A</h1>
+		//this.body.style : h1 태그의 style 속성
+		this.body.style.position = "absolute";//this.body의 위치 형태를 절대위치로 설정
+		let text = this.body; //h1 태그
+		//<h1 style='background-color:white; position:absolute' onclick="">A</h1>
+		this.body.onclick = function(){// 이벤트 등록.
+			--total;
+			alert("남은 문자 수:" + total);
+			text.innerHTML = "B"; //글자를 B로 변경
+		}
+		//document.body : <body> 태그
+		//appendChild(this.body) : body 태그에 h1 태그 추가
+		document.body.appendChild(this.body);
+	}
+	// MovingText.prototype.move : 클래스에 move 멤버함수 정의
+	MovingText.prototype.move = function(){
+		if(this.body.innerHTML == 'B') return; //h1 태그의 값이 B인 경우 움직이지 않음
+		if(this.x < 0 || this.x > canvasWidth){//A문자가 가로범위를 벗어나면 부호변경.
+			this.vX *= -1;
+		}
+		if(this.y < 0 || this.y > canvasHeight){//A문자가 세로범위를 벗어나면 부호변경.
+			this.vY *= -1;
+		}
+		this.x += this.vX;// 가로위치의 값 변경
+		this.y += this.vY;// 세로위치의 값 변경
+		//<h1 style='background-color:white; position:absolute; left: 가로위치px;' onclick="">A</h1>
+		//<h1 style='background-color:white; position:absolute; top: 가로위치px;' onclick="">A</h1>
+		this.body.style.left = this.x + "px";
+		this.body.style.top = this.y + "px";
+	}
+	window.onload = function(){
+		let movingTexts = []; // 배열
+		for(let i=0;i<10;i++){
+			//new MovingText() : MovingText 객체 생성
+			//movingTexys 배열에 요소로 추가
+			movingTexts.push(new MovingText());
+		}
+		//setInterval(함수,밀리초) : 밀리초마다 함수 실행
+		let game = setInterval(function(){
+			for(let i in movingTexts){
+				//인덱스값
+				if(total < 4){
+					alert("게임종료");
+					//clearInteravl)(game) : gam setInterval 함수를 해제
+					clearInterval(game);
+					return;
+				}
+				movingTexts[i].move();
+			}
+		},1000/60);
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<!-- webapp/20230328/numberbaseball.html -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>숫자 야구 게임</title>
+<style type="text/css">
+	/* 모든 태그 */
+   * {text-align: center; margin: 0px; padding: 0px;  }
+</style> 
+<script>
+let trycount = 0;
+let nums = new Array(10); // 0~9 까지의 숫자 저장 배열
+let answer = new Array(4) // 0~9사이의 중복되지 않는 4자리 수. 시스템이 저장한 수. (정답)
+let inputarr = new Array(4); // 입력된 데이터
+for(let i=0;i<nums.length;i++) {
+	nums[i] = i; // 0~9사이의 값 추가
+}
+//nums 섞기
+for(let a=0;a < 10000;a++) {
+	  let ran = Math.floor(Math.random()*nums.length);
+	  let tmp = nums[0];
+	  nums[0] = nums[ran];
+	  nums[ran] = tmp;
+}
+//answer 배열의 4개 숫자는 중복되지 않음
+for(let i=0;i<answer.length;i++) {
+	answer[i] = nums[i]; //nums 배열 중 앞에서 4개를 answer배열에 저장
+}
+console.log("answer="+answer)
+//화면이 로드되는 경우. 화면이 시작될때.
+window.onload = function(){
+	for(let i=0;i<4;i++) {
+	   let img = document.createElement("img")
+	   img.setAttribute("width",100)
+	   img.setAttribute("height",100)
+	   img.setAttribute("border",1)
+	   document.querySelector("#card").append(img);
+	}
+	//입력버튼이 클릭될때
+	document.querySelector("#inbtn").onclick = function(){
+		let v_userNum = document.querySelector("#userNum").value
+		//입력값 검증
+		if (v_userNum == "") {
+	  	   alert('숫자를 입력해주세요');
+	  	   document.querySelector("#userNum").focus();
+  	       return;
+	  	}
+		//isNaN :  숫자가 아니니?
+		if (isNaN(v_userNum)) {
+             alert('숫자타입으로 입력해주세요');
+  	    	 document.querySelector("#userNum").focus();
+	    }
+	    //4자리 입력
+	    if (v_userNum.length != 4) { 
+	         alert('4자리 숫자로 입력해주세요');
+  	    	 document.querySelector("#userNum").focus();
+	         return;
+	    }
+	    //중복숫자 검증
+ 	    inputarr = v_userNum.split("");// 한개의 숫자를 배열로 저장
+	  	for(let v1 in inputarr) { 
+	  	    let cc = 0;
+	  	    for(let v2 in inputarr) {
+	  	    	if(inputarr[v1] == inputarr[v2]) cc++;
+	  	    }
+	  	    if (cc > 1) {
+	  	     alert('중복된 숫자를 입력할 수 없습니다.');
+	  	     document.querySelector("#userNum").focus();
+	  		 return;
+	  		}
+	  	 }        
+	     matchingNum(v_userNum);//결과 생성
+	     document.querySelector("#userNum").value=""
+	}
+	/* key이벤트 :
+		keydown : 키보드에서 키를 누를때
+		keypress: 키보드에서 키를 누르고 있을때. deprecated 됨. 사용하지 않음
+		keyup	: 키보드에서 키를 눌렀다 뗄때. 키가 올라올때
+	*/
+    document.querySelector("#userNum").onkeyup=function(event){
+			//event : key 이벤트 객체.
+			//event.keyCode: 눌려진 키의 코드값
+	  if (event.keyCode == 13) {// 13 : Enter키
+		  document.querySelector("#inbtn").onclick();//입력버튼의 클릭이벤트 발생
+		  											 //입력버튼의 클릭이벤트 핸들러 호출
+	  }
+    }
+}
+
+function matchingNum(usernum) {
+    let strike = 0;
+    let ball = 0;
+    let inputarr = usernum.split("");
+    for (let i=0;i < 4 ;i++) {
+    	for(let j=0;j < 4 ;j++) {
+          if (answer[j] == inputarr[i]) {
+        	if(i == j)   strike++;
+        	else ball++;
+          }
+    	}
+    }
+    
+	console.log("strike="+strike,",ball="+ball)
+
+    if (strike == 4) { // 정답
+		let wrap = document.getElementById("wrap");
+	   let h1_1 = 	
+       document.querySelector("#result").innerHTML 
+                                 += ("<h1>축하합니다. 정답입니다.</h1>");
+	   document.querySelector("#wrap").innerHTML += "<button>다시시작</button>"
+		//다시 시작 버튼의 이벤트 등록
+	   document.querySelector("button").onclick =function(){
+    	   location.reload();	//현재 페이지를 재실행
+       }
+	   //img 태그 들
+       cimgs = document.getElementsByTagName("img")
+       for (let i in cimgs) {
+    	   cimgs[i].src = "./nums/num" + answer[i] + ".jpg"
+       }
+    } else {//정답이 아닌 경우
+       strike += "S ";
+       ball += "B";
+       let result_div = document.querySelector("#result")
+       // += : 내용을 추가
+       result_div.innerHTML += ++trycount  + "번째 도전 : " + strike + ball 
+	         + ", 유저입력값 : " + usernum+"<br>"
+	         
+    }
+}
+</script>
+</head>
+<body>
+<h3> 숫자야구 </h3>
+<div id="wrap">
+	<div id="card"></div>  <!-- 이미지 추가 -->
+	<div id="left">
+	  <input type="text" id="userNum" >
+	  <input type="button" value="입력"  id="inbtn">
+	</div>
+	<div id="result"></div> <!-- 결과추가 -->
+</div>
+</body>
+</html>

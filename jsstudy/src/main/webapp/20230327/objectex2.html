@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>람다 함수 사용</title>
+<script type="text/javascript">
+	const test = {
+			a : function() { //test 객체의 a 이름의 멤버 함수
+				console.log(this)
+			},
+			b : ()=>{		 //test 객체의 b 이름의 멤버 함수. 람다방식 구현
+				console.log(this)
+			}
+	}
+	test.a()
+	test.b()
+	//기존 객체의 함수 추가하기
+	document.write(Number("10.5")+100 +"<br>")
+	//Number(jsc에서 만들어진 함수) 객체에 power() 함수 추가하기
+	//n=2 : default 매개변수. 매개변수가 없는 경우 n 변수는 기본값 2를 저장
+	 Number.prototype.power = function(n=2){
+		return this.valueOf() **n
+	}
+	const a = 10
+	document.write("a.power():" + a.power() + "<br>")
+	document.write("a.power(3):" + a.power(3) + "<br>")
+	document.write("a.power(4):" + a.power(4) + "<br>")
+	//String 객체에 contain 함수 추가하기
+	String.prototype.contain = function(data){
+		return this.indexOf(data) >= 0
+	}
+	document.write("abc".contain("a")+"<br>")
+	document.write("abc".contain("abd")+"<br>")
+</script>
+</head>
+<body>
+
+</body>
+</html>

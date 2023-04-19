@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Text to Speech 연습</title>
+<script type="text/javascript">
+	let msg = new SpeechSynthesisUtterance();
+	function setlang(t){
+		msg.lang = t;//ko_KR : 한글제공.
+	}
+	function ttsTest(){
+		msg.text = intext.value;//안녕하세요
+		//speechSynthesis : tts 객체. 브라우저에서 제공
+		speechSynthesis.speak(msg);//speechSynthesisUtterance 객체 필요
+	}
+</script>
+</head>
+<body>
+<textarea rows="10" cols="100" id="intext">안녕하세요</textarea>
+<input type="button" onclick="setlang('ko_KR');ttsTest()" value="읽기">
+</body>
+</html>
