@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>id 속성값 선택</title>
+<style type="text/css">
+	h1 {
+	margin:0 auto; /* margin:0 auto : 간격을 0 설정 */
+	}
+	#header {
+	width:800px;
+	margin:0 auto;
+	background: red;
+	}
+	#wrap{
+	width:800px; 
+	marhin:0 auto;
+	overflow:hidden; /* overflow:hidden: 범위 밖의 내용을 안보여줌 */
+	}
+	#asude{
+	width:200px; 
+	float:left; /* float:left: 왼쪽 부터 배치하기 */
+	background: blue;
+	}
+	#content {
+	width:800px; 
+	float:left; 
+	background: green;
+	}
+</style>
+</head>
+<body>
+<div id="header"><h1>#header</h1></div>
+<div id="wrap">
+	<div id="aside"><h1>#aside</h1></div>
+	<div id="content"><h1>#content</h1></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!--  -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 상태 선택자 예제 2</title>
+<style type="text/css">
+/* 입력가능한 input 태그 : 배경색 : 노랑, 글자크기 : 30px */
+	input:enabled { background-color: yellow; font-size:30px;}
+/* 입력가능한 input 태그 선택: 배경색 : 분홍, 글자크기 : 15px */
+	input:focus { background-color: pink; font-size:15px;}
+/* 입력 불가능한 input 태그: 배경색: 검정, 글자색: 흰색 */
+	input:disabled {background-color: black; color:white;}
+</style>
+</head>
+<body>
+<h2>입력이 가능한 input 태그</h2>
+<input type="text">
+<h2>입력이 불가능한 input 태그</h2>
+<input type="text" disabled="disabled" value="입력불가능">
+</body>
+</html>

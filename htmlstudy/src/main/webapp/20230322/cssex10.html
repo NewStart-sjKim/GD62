@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>z-index 속성 예제</title>
+<style type="text/css">
+/* 
+	position 속성 : 화면에 태그들 배치 기준
+		1. static 	: 차례대로. 기본값. z-index 속성 사용불가
+		2. relative	: 앞의 요소의 상태 좌표
+		3. fixed	: 절대좌표. 브라우저기준.
+		4. absolute	: 절대좌표. document 기준
+		
+	z-index : 숫자값이 크면 위쪽에 배치됨.
+ */
+	div {width:200px; height:200px; border:1px solid black;}
+	.p0 {z-index:100;
+		 position : absolute;
+		 top:0pt; left:0pt;
+		 background-color: pink; cursor:crosshair;}
+	.p1 {z-index:1;
+		 position : fixed;
+		 top:10pt; right:0pt;
+		 background-color: yellow; cursor:crosshair;}
+	.p2 {z-index:4;
+		 position : relativ;
+		 top:100pt; left:10pt;
+		 background-color: gray; cursor:pointer;}
+	.p3 {z-index:2;
+		 position : absolute;
+		 top:10pt; right:100pt;
+		 background-color: rgb(0, 255, 255); cursor:move;}
+	.p4 {z-index:3;
+		 position : fixed;
+		 bottom:10pt; right:100pt;
+		 background-color: red; cursor:wait;}
+</style>
+</head>
+<body>
+<div>
+	<div class="p0">p0 box</div>
+	<div class="p1">p1 box</div>
+	<div class="p2">p2 box</div>
+	<div class="p3">p3 box</div>
+	<div class="p4">p4 box</div>
+</div>
+</body>
+</html>

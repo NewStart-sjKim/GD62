@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!-- 
+	 선택자1: 반응선택자 {}
+	 반응선택자
+		 link : a 태그의 방문한적이 없는 경우 설정
+	 	 visited : a 태그의 방문한저기 있는 경우 설정
+	 	 hover : 선택자1의 영역에 마우스의 커서가 들어온 경우 설정
+	 	 active : 선택자1의 영역에 마우스를 클릭한 경우 설정
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>반응 선택자: 이벤트</title>
+<style type="text/css">
+/* link : a태그의 초기상태. 방문한 적이 없는 링크인 경우 : 원래상태 : 파랑색 */
+a:link{ color:blue;}
+/* visited : a태그에서 방문한 이력이 있는 링크인 경우 : 원래상태 : 보라색 */
+a.visited {color: purple;}
+/* a 태그의 class 속성값이 default인 경우 방문한 사이트인 경우 글자색을 green */
+a.default:visited {color:green;}
+/* a 태그의 class 속성값이 color인 경우 방문한 사이트인 경우 글자색을 orange */
+a.color:visited {color:orange;}
+/* h1태그 중 class 속성값이 a1인 태그의 글자색을 빨강색으로 */
+	h1.a1 {color:red;}
+/* h1태그 중 class 속성값이 b1인 태그의 배경색을 노랑색으로 */
+	h1.b1 {background: pink;}
+/* h1 태그로 마우스 커서가 이동하면 글자색을 흰색으로 변경 */
+	h1:hover {color:white;}
+/* h1 태그를 마우스로 클릭하면 글자색을 파랑색으로 변경 */
+	h1:active {color: blue;}
+</style>
+</head>
+<body>
+<h1>반응 선택자</h1>
+<table>
+	<tr><td>마우스를 올리면....<br><b>기본값</b><br>
+	<a href="http://www.google.com" class="default">구글</a><hr>
+	<a href="http://www.google.com" class="color">구글</a>
+</td></tr>
+</table>
+	<h1 class="a1 b1"> class 속성 a1 b1</h1> <!-- 노랑배경에 빨강글씨 -->
+	<h1 class="a1"> class 속성 a1</h1> <!-- 빨강 글씨 -->
+	<h1 class="b1"> class 속성 b1</h1> <!-- 노랑바탕 -->
+</body>
+</html>

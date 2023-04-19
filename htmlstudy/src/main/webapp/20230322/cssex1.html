@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- css 선택자 	: 태그 선택 방법
+	 input[type=submit] : intput 태그 중 type 속성의 값이 submit인 태그를 선택
+	 css 선택자 	: 태그 선택 방법
+	 	태그 선택		: 태그명 {속성1:값1; 속성2:값2;}
+	 			  input {width:100%;}
+	 	class 속성값 선택 : .class 속성값 {속성1:값1; 속성2:값2;}
+	 			  .ab {width:100%} => class = "ab"인 태그들 선택
+	 	id 속성값 선택 : #id속성값 {속성1:값1; 속성2:값2;}
+	 			  #cd {width:100%;} => id="cd" 인 태그 선택
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>css 선택자 예제</title>
+<style type="text/css">
+/* li 태그의 머리표시를 숫자로 변경 */
+	li {list-style-type: decimal;}
+/* h2택의 글자 크기를 20px, 글자색을 오렌지, 배경 파랑색 변경 */
+	h2 {
+	font-size : 20px;
+	color : orange;
+	background-color : /* blue */#cccccc;
+	}
+/* p 태그의 글자크기 : 15px, 글자색 : 파랑색, 배경 : 회색 */
+	p{
+	font-size : 15px;
+	color : blue;
+	background-color : gray;
+	}
+/* class = "li"인 태그의 머리표시 생략 */
+	.li {
+	list-style-type: none;
+	}
+/* id="h3"인 태그의 글자색을 빨강으로 */
+	#h3 {
+	color:red;
+	}
+</style>
+</head>
+<body>
+<ul><li>항목1</li><li>항목2</li><li>항목3</li></ul>
+<h2>CSS 언어를 사용하여 웹 문서에서 디자인과 내용을 분리할 수 있다.</h2>
+<p>웹표준에 의한 웹 문서는 디자인과 내용을 분리해야 한다.</p>
+<p>내용은 HTML을 이용하여 구현하고, 디자인은 CSS를 이용하여 구현한다.</p>
+<ul><li class="li">항목1</li>	
+	<li class="li">항목2</li>
+	<li class="li">항목3</li>
+</ul>
+<h3>CSS</h3>
+<h3 id="h3">h3 id="h3" 태그</h3>
+</body>
+</html>

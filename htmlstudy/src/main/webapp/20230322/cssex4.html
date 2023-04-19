@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+	 선택자1 선택자2 : {} => 선택자1의 후손태그 중 선택자2 인 태그들
+	 선택자1 > 선택자2 : {} => 선택자1의 자식태그 중 선택자2 인 태그들
+	 선택자1 , 선택자2 : {} => 선택자1 이거나 중 선택자2 인 태그들(or)
+	 선택자1 선택자2 : {} => 선택자1 중 선탁자2인 태그(and)
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>후손태그,자식태그 선택</title>
+<style type="text/css">
+/* #header 태그의 하위태그 중 h1 태그의 글자 색을 빨강색으로 변경 */
+	#header h1{color:red;}
+/* #header 태그의 자식태그 중 h1 태그의 글자 색을 분홍색으로 변경 */
+	#header > h1{color : pink;}
+/* #header 태그의 이거나 h1 태그의 글자 색을 파랑색으로 변경 */
+	#header , h1{color : blue;}
+/* h1 태그 중 class 속성값이 title인 태그의 글자색을 노랑색으로 변경 */
+	h1.title{color:yellow;}
+/* h1 태그 중 id 속성값이 content인 태그의 글자크기를 20px로 변경 */
+	h1#content	{font-size:20px;}
+</style>
+</head>
+<body>
+<h1 class="title"> h1 class="title" 태그</h1>
+<div id="header">
+	<h1 class="title"> h1 class="title" 태그</h1><!-- #header 태그의 h1 자식태그 -->
+	<div id="nav"><h1>div id="nav" 하위 h1 태그</h1></div>
+	<p>#header 태그의 하위 p태그
+</div>
+<h1 id="content">body의 하위 h1 태그</h1>
+<p>body 태그의 하위 p태그
+</body>
+</html>

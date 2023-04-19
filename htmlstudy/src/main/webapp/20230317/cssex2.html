@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<!-- webapp/20230317/cssex2.html
+	css 중복시 우선순위
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css1.css"> <!-- h1태그의 색상 : 초록 : : 우선순위 : 3-->
+<style type="text/css">
+	h1 {color : blue;}/* h1 태그의 색상 : 파랑 : 우선순위 : 2*/
+</style>
+</head>
+<body>
+<h1 style="color:red;">css 연습</h1> <!-- h1태그의 색상 : 빨강 : 우선순위 : 1-->
+<h3 style="color:red">여행(travel)의 어원</h3>
+<h1>css 연습2</h1><!-- 파랑 -->
+<h3> css 연습</h3>
+
+<p>css연습</p>
+<p>여행을 뜻하는 영어 단어 'travel'의 어원은 travail(고통,고난) 이라고 합니다.
+교통이 발달하지 않은 과거에는 여행이 고통이나 고난이었던 거지요.
+여행이 오락이나 쾌락으로 여겨지게 된 것은 교통수단이 조금 더 발달된 19세기에 이르러서 입니다.</p>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!-- /webapp/20230317/imageex1.html : 이미지 출력하기
+	 /webapp/img/lizard.jpg -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이미지파일 출력</title>
+</head>
+<body>
+<!-- 
+	 상대경로 : 현재위치
+	 ../ => 나의 상위폴더 
+	 ./  => 현재폴더
+	 절대경로 : 이클립스 프로젝트인 경우
+	 		  webapp 절대경로 시작
+	 	url : /htmlstudy => 프로젝트 이름
+-->
+<!-- 
+	src="경로/이미지이름"
+	title="이미지설정" => 마우스를 이미지에 올려놓으면 내용표시
+	width="200" => 가로길이 설정. 가로크기만 설정하면,
+				   세로는 원본이미지 비율에 맞춰서 자동 설정
+	height="200" => 세로길이 설정
+ -->
+<img src="../img/lizard.jpg" title = "게코도마뱀"> <!--원본이미지 크기로 출력  -->
+<img src="../img/lizard.jpg" title = "게코도마뱀" width="200" height="200">
+<img src="../img/lizard.jpg" title = "게코도마뱀" width="150"><br>
+<br>
+<img src="/htmlstudy/img/lizard.jpg" title = "게코도마뱀">
+<img src="/htmlstudy/img/lizard.jpg" title = "게코도마뱀" width="200" height="200">
+<img src="/htmlstudy/img/lizard.jpg" title = "게코도마뱀" width="150"><br>
+</body>
+</html>
