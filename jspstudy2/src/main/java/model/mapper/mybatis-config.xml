@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?> <!-- 시작할떄 무조건 쓰기 -->
 <!--
-	 /mybatisjava/src/mapper/mybatis-config.xml
-	 mapper 패키지 생성
-	 mybatis-config.xml 파일 생성 
 -->
 <!DOCTYPE configuration PUBLIC "-//mybatis.org/DTD config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="mapper/mybatis.properties"/>
-	
-	<typeAliases>
-		<typeAlias type="main.Member" alias="Member"/>
-		<typeAlias type="main.Student" alias="Student"/>
-	</typeAliases>
-	
+	<properties resource="model/mapper/mybatis.properties"/>
 	
 	<!-- Connection 객체 -->
 		<environments default="development">
@@ -27,12 +18,11 @@
 					</dataSource>
 			</environment>
 		</environments>
+
 		<!-- sql 구문을 가진 파일 목록 -->
 		<mappers>
-			<mapper resource="mapper/MemberMapper1.xml"/>
-			<mapper resource="mapper/StudentMapper1.xml"/>
-			<mapper resource="mapper/StudentMapper2.xml"/>
-			<package name="mapper"/> <!-- mapper 패키지의 인터페이스들을 sql 구문으로 등록 -->
+			<!-- model.mapper 패키지의 인터페이스들을 sql 구문으로 등록 -->
+			<package name="model.mapper"/> 
 		</mappers>
 		
 </configuration>
