@@ -16,14 +16,14 @@ import com.oreilly.servlet.MultipartRequest;
 import gdu.mskim.MskimRequestMapping;
 import gdu.mskim.RequestMapping;
 import model.Board;
-import model.BoardDao;
+import model.BoardMybatisDao;
 import model.Comment;
 import model.CommentDao;
 
 @WebServlet(urlPatterns= {"/board/*"},
 initParams= {@WebInitParam(name="view",value="/view/")})
 public class BoardController extends MskimRequestMapping {
-	private BoardDao dao = new BoardDao();
+	private BoardMybatisDao dao = new BoardMybatisDao();
 	private CommentDao cdao = new CommentDao();
 	@RequestMapping("writeForm")
 	public String writeForm(HttpServletRequest request,HttpServletResponse response) {
@@ -73,7 +73,6 @@ public class BoardController extends MskimRequestMapping {
 		if(boardid == null) boardid = "1";
 		board.setBoardid(boardid);
 		if(board.getFile1()==null)board.setFile1("");
-		BoardDao dao = new BoardDao();
 		//num : board 테이블의 num컬럼의 값 중 최대값
 		int num = dao.maxnum(); //board 테이블에 등록된 최대 num 값
 		board.setNum(++num); //최대값+1
@@ -98,6 +97,11 @@ public class BoardController extends MskimRequestMapping {
 	 */
 	@RequestMapping("list")
 	public String list(HttpServletRequest request,HttpServletResponse response) {
+			try {
+				request.setCharacterEncoding("UTF-8");
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
 		if (request.getParameter("boardid") != null) {
 			  //session에 게시판 종류 정보 등록	
 			  request.getSession().setAttribute("boardid",request.getParameter("boardid"));
@@ -109,13 +113,25 @@ public class BoardController extends MskimRequestMapping {
 		    try {
 			   pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		    } catch (NumberFormatException e) {}
-		    
+		    	String column = request.getParameter("column");
+		    	String find = request.getParameter("find");
+		    	/*
+		    	 * column,find(list.jsp) 파라미터 중 한개만 존재하는 경우 두개의 파라미터값은
+		    	 * 없는 상태로 설정
+		    	 */
+		    		if(column == null || column.trim().equals("")) {
+		    			column = null;
+		    			find = null;
+		    		}
+		    		if(find == null || find.trim().equals("")) {
+		    			column = null;
+		    			find = null;
+		    		}
 		    int limit = 10;  //한페이지에 보여질 게시물 건수
-		    BoardDao dao = new BoardDao();
 		    //boardcount : 게시물종류별 게시물 등록건수
-		    int boardcount = dao.boardCount(boardid); //게시판 종류별 전체 게시물등록 건수 리턴
+		    int boardcount = dao.boardCount(boardid,column,find); //게시판 종류별 전체 게시물등록 건수 리턴
 		    //list : 현재 페이지에 보여질 게시물 목록. 
-		    List<Board> list = dao.list(boardid,pageNum,limit); 
+		    List<Board> list = dao.list(boardid,pageNum,limit,column,find); 
 		    /*
 		       maxpage:필요한 페이지 갯수.
 		       게시물건수  필요한 페이지
@@ -212,7 +228,6 @@ public class BoardController extends MskimRequestMapping {
 	@RequestMapping("replyForm")
 	public String replyForm(HttpServletRequest request,HttpServletResponse response) {
 		int num = Integer.parseInt(request.getParameter("num"));//파라미터값읽기
-		BoardDao dao = new BoardDao();
 		Board board = dao.selectOne(num); //원글 정보
 		request.setAttribute("board", board);
 		return "board/replyForm";
@@ -326,7 +341,6 @@ public class BoardController extends MskimRequestMapping {
 			board.setFile1(multi.getParameter("file2"));
 		}
 		//2 비밀번호 검증
-		BoardDao dao = new BoardDao();
 		Board dbBoard = dao.selectOne(board.getNum());
 		String msg = "비밀번호가 틀렸습니다.";
 		String url = "updateForm?num=" + board.getNum();
@@ -373,7 +387,6 @@ public class BoardController extends MskimRequestMapping {
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pass = request.getParameter("pass");
 		
-		BoardDao dao = new BoardDao();
 		Board board = dao.selectOne(num);
 		String login = (String)request.getSession().getAttribute("login");
 		String msg = "게시글의 비밀번호가 틀렸습니다.";
