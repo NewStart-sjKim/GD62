@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>속성을 이용한 태그 선택</title>
+	<script 
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			$("ul").css("color","red")
+			$("div ul").css("color","green")
+			$("div > ul").css("color","blue")
+		})
+	</script>
+</head>
+<body>
+ul태그의 글자색을 빨ㄹ강으로 설정<br>
+div 하위 ul 태그의 글자색을 초록으로 설정<br>
+div 태그의 자식인 ul 태그의 글자색을 파랑으로 설정
+	<div>
+		<ul>
+			<li>사과</li>
+			<li>복숭아</li>
+			<li>감</li>
+			<li>참외</li>			
+		</ul>
+	</div>
+	<div>
+		<span>
+			<ul>
+				<li>사과</li>
+				<li>복숭아</li>
+				<li>감</li>
+				<li>참외</li>	
+			</ul>
+		</span>
+	</div>
+	<ul>
+		<li>사과</li>
+		<li>복숭아</li>
+		<li>감</li>
+		<li>참외</li>			
+	</ul>
+	<hr>
+input 태그 중 type 속성의 값이 text인 태그의 value 속성에 hello jquery 저장하기<br>
+	<input type="text"><br>
+	<input type="button" value="버튼"><br>
+	<input type="radio" value="버튼"><br>
+	<input type="checkbox" value="버튼"><br>
+	<script type="text/javascript">
+		/* 
+		$("input[type=text]").val("hello jquery")
+		alert($("input[type=text]".val()) 
+		type 속성의 값이 te로 시작하는 태그.
+		$("input[type^=te]").val("hello jquery")
+		type 속성의 값이 xt로 끝나는 태그
+		*/
+		$("input[type$=xt]").val("hello jquery")
+		/*
+		input 태그 중 type 속성의 값이 button인 태그의 value값을 등록으로 설정하기
+		$("input[type=button]").val("등록")
+		$("input[type^=bu]").val("등록")
+		$("input[type$=on]").val("등록")
+		*/
+		$("input:button").val("이잉")
+		//input 태그 중 type 속성의 값이 radio,checkbox인 태그를 선택상태로 변경하기
+		$("input:radio").attr("checked","checked")
+		$("input:checkbox").attr("checked","checked")
+	</script>
+</body>
+</html>

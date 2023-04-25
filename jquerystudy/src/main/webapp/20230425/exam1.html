@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>클릭된 h1 태그의 내용을 alert 창으로 출력하기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//body 태그의 자식태그 중 h1 태그를 클릭시 이벤트 등록
+		//	div > h1 태그는 이벤트 등록이 안됨.
+		$("body > h1").click(function(){
+			alert($(this).html())
+		})
+		/*
+		$("p").click(function(){
+			alert($(this).html())
+		})
+		*/
+		$("div").click(function(){
+		//	alert($(this).html()) //<h1><p> 태그가 문자열로 출력됨.
+		//	<h1><p> 태그가 문자열로 출력안되고, 내용만 출력하기
+		//$(this) : 클릭된 div 태그
+		//let h1 = $(this).find("h1").html() //클릭된 div 태그의 하위 h1 태그 내용
+		//let p = $(this).find("p").html() //클릭된 div 태그의 하위  p 태그 내용
+		//let h1 = $(this > "h1").html() //undefined
+		//let p = $(this > "p").html() //undefined
+		let h1 = $("h1",this).html()
+		let p = $("p",this).html()
+		alert(h1+"\n"+p)
+		})
+	})
+</script>
+</head>
+<body>
+	<h1>Header 0</h1>
+	<h1>Header 1</h1>
+	<h1>Header 2</h1>
+	<div>
+		<h1>DIV Header 0</h1>
+			<p>DIV p 0</p>
+	</div>
+	<div>
+		<h1>DIV Header 1</h1>
+			<p>DIV p 0</p>
+	</div>
+	<div>
+		<h1>DIV Header 2</h1>
+			<p>DIV p 0</p>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<script 
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+	/*
+	 * setTimeout(함수,밀리초) : 밀리초 후에 함수 실행(호출).
+	 * $("select").val() : select 태그의 value값
+	 			  val()	 : value값 리턴
+	 			  val(값) : value = 값 저장
+	 */
+		$(function(){
+			setTimeout(function(){ //자바스크립트 함수
+				alert($("select").val())
+			},3000)
+		})
+		
+	</script>
+</head>
+<body>
+	<h3>jquery를 이용하여 select 태그에서 선택된 이름을 3초후 alert 창에 띄우기</h3>
+		<select>
+			<option>딸기</option>
+			<option>사과</option>
+			<option>포도</option>
+			<option>복숭아</option>
+			<option>오렌지</option>
+		</select>
+</body>
+</html>

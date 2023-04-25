@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 제거</title>
+<style type="text/css">
+	
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("h1").click(function(){
+			$(this).html("CLICKED") //클릭된 h1태그의 내용을 CLICKED로 변경
+			$(this).off() //클릭된 h1 태그의 click 이벤트 등록 취소. h1 태그가 클릭되어도 현재함수실행 안됨
+			alert("이벤트가 발생했습니다.")
+		})
+	})
+</script>
+</head>
+<body>
+	<h1>Header-0</h1>
+	<h1>Header-1</h1>
+	<h1>Header-2</h1>
+</body>
+</html>

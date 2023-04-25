@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>위치 관련 선택자</title>
+	<script 
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+		$(function(){
+			//초록,노랑,파랑 순으로 배경색을 설정
+			$("tr:nth-child(3n+1)").css("background","green")
+			$("tr:nth-child(3n+2)").css("background","yellow")
+			$("tr:nth-child(3n)").css("background","pink")
+			//0번 인덱스의 검정바탕에 흰글씨로 설정
+			//$("tr:first").css("background","black").css("color","white")
+			//$("tr:first").css({"background":"black","color":"white"})
+			//eq(인덱스) : 0번 인덱스 설정
+			$("tr:eq(0)").css({"background":"black","color":"white"})
+			//eq(3) : 흰색바탕에 파랑글씨로 변경
+			$("tr:eq(4)").css({"background":"white","color":"blue"})
+		})
+	</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>이름</th>
+			<th>혈액형</th>
+			<th>지역</th>
+		</tr>
+		<tr>
+			<th>홍길동</th>
+			<th>O형</th>
+			<th>서울</th>
+		</tr>
+		<tr>
+			<th>이몽룡</th>
+			<th>A형</th>
+			<th>남원</th>
+		</tr>	
+		<tr>
+			<th>김삿갓</th>
+			<th>AB형</th>
+			<th>하남</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		<tr>
+			<th>임꺽정</th>
+			<th>B형</th>
+			<th>강릉</th>
+		</tr>
+		
+	</table>
+</body>
+</html>

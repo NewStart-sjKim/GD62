@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- 
+	userNum 입력란에 숫자를 입력하고 입력버튼 클릭하면
+	 숫자에 해당하는 이미지 화면에 출력하기
+	수업자료 게시판에 image.zip 파일을 다운 받아 압축을 풀어
+	webbapp 폴더에 2개의 폴더(imgs,nums) 붙여넣기
+	nums 폴더의 이미지 사용
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>예제 3</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#inbtn").click(function(){
+			//$("#userNum").val() : 입력한 숫자값
+			//split("") : 한개 글자로 split
+			//inputarr : 입력 숫자의 배열 저장
+			inputarr = $("#userNum").val().split("");
+			html = "";
+			for(let i=0;i<inputarr.length;i++){
+				html += "<img width='100' height='100' border='1' />";
+			}
+			$("#card").html(html); //이미지 태그들
+			$("#card img").each(function(index){
+				//$(this) : img 태그 한개
+				$(this).attr("src","../nums/num" + inputarr[index] + ".jpg");
+			})
+		})
+		//입력칸에 enter 키가 입력시 버트늘릭 이벤트 발생
+		 $("#userNum").keyup(function(event){
+			if(event.keyCode == 13) { //enter 키
+				$("#inbtn").click(); //버튼클릭 이벤트 호출
+			}
+		})
+	})
+</script>
+</head>
+<body>
+	<div>
+		<input type="text" id="userNum">
+			<input type="button" value="입력" id="inbtn">
+	</div>
+	<div id="card">
+		<img src="" width="100" height="100">
+	</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 예제 1</title>
+<style type="text/css">
+	.reverse{
+		background: black;
+		color : white;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//on (이벤트 종류, 함수) : 이벤트 등록.
+		//on ("click",함수(핸들러))
+		$("h1").on("click",function(){
+			//(this) : 이벤트가 발생된 h1 태그. 이벤트소스. 클릭된 h1 태그 한개
+			$(this).html(function(i,item){
+				return item + "+"
+			})
+		})
+		$("h1").on({
+			//mouseenter : 영역안에 마우스커서가 있을때
+			mouseenter : function(){
+				//$(this) : 마우스커서를 내부에 가지고 있는 h1 태그 한개
+				//addClass(class속성값) : class='reverse' 속성 추가
+				$(this).addClass("reverse")
+			},
+			//mouseleave : 영역안에서 마우스커서가 나갈때
+			mouseleave : function(){
+				$(this).removeClass("reverse")
+			}
+		});
+	})
+</script>
+</head>
+<body>
+	<h1>Header-0</h1>
+	<h1>Header-1</h1>
+	<h1>Header-2</h1>
+</body>
+</html>

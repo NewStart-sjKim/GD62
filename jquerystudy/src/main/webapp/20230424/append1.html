@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>동적으로 태그 추가하기</title>
+<!-- 
+	하위태그.appendTo(상위태그)
+	상위태그.append(하위태그)
+ -->
+	<script 
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js">
+	</script>
+	<script type="text/javascript">
+		$(function(){			
+			$("<h1></h1>").html("Hello World").appendTo("body")
+		//	$("<img>").attr("src","Jellyfish.jpg").appendTo("body")
+		// body 태그에 Jellyfish.jpg 이미지를 가로 : 200, 세로 : 200 이미지 추가하기
+			$("<img>",{src:"Jellyfish.jpg",width:200,height:200}).appendTo("body") //이미지 태그를 body태그에 추가
+			let h1="<h1>Header-1</h1>"
+			let h2="<h2>Header-2</h2>"
+			$("body").append(h1,h2,h1,h2) //body 태그에 h1,h2,h1,h2 태그를 추가 
+		})
+	</script>
+</head>
+<body>
+
+</body>
+</html>

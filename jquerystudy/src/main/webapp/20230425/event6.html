@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 발생한 객체의 위치값</title>
+<style type="text/css">
+	table{
+	border-spacing: 0px;
+	border-collapse: collapse;
+	}
+	.hover {background:green; color:yellow;}
+	.reverse{background:blue; color:white;}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//th태그에 마우스 커서가 들어오면 발생
+		$("th").hover(function(){
+			//$(this) : 이벤트가 발생한 th 태그 한개.
+			//$(this).parent() : 이벤트가 발생한 th 태그의 tr 태그
+			//$(this).parent().children() : 이벤트가 발생한 th태그의 tr 태그의
+			//									모든 하위 태그. (th 태그들)
+			//$(this).parent().children().index(this): th 태그들 중 this의 인덱스 값 리턴
+			//select : 인덱스 + 1 => 순서
+			select = $(this).parent().children().index(this) + 1;
+			console.log(select)
+			$(this).addClass("hover");
+			//select : 1 => td:nth-child(1)
+			// td 태그 중 select인 모든 td 태그의 class 속성을 hover 추가
+			$("td:nth-child("+select+")").addClass("hover");
+		},function(){ //th 태그에 마우스 커서가 외부로 나갈때 발생
+			$(this).removeClass("hover");
+			$("td:nth-child("+select+")").removeClass("hover");
+		})	
+	})
+</script>
+</head>
+<body>
+	<table border="1">
+		<tr>
+			<th>이름</th>
+			<th>혈액형</th>
+			<th>지역</th>
+			<th>성별</th>
+			<th>전화</th>
+		</tr>
+		<tr>
+			<td>김승준</td>
+			<td>B</td>
+			<td>시흥</td>
+			<td>남</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>김창준</td>
+			<td>B</td>
+			<td>수원</td>
+			<td>남</td>
+			<td>123</td>
+		</tr>
+		<tr>
+			<td>김선정</td>
+			<td>O</td>
+			<td>남양주</td>
+			<td>여</td>
+			<td>5432</td>
+		</tr>
+	</table>
+</body>
+</html>
