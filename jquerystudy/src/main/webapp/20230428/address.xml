@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<states>
+	<north>
+		<state>강북구</state><state>지구</state><state>구구</state>
+	</north>
+	<south>
+		<state>갯강구</state><state>북치구</state><state>장구치구</state>
+	</south>
+	<east>
+		<state>전국구</state><state>원미구</state><state>옥구</state>
+	</east>
+	<west>
+		<state>공구</state><state>김구</state><state>봉구</state>
+	</west>
+</states>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<people> <!-- root 태그 : 반드시 한개만 가능. -->
+	<person>
+		<name>홍길동</name><gender>남자</gender><part>기타</part>
+	</person>
+	<person>
+		<name>엄상용</name><gender>여자</gender><part>드럼</part>
+	</person>
+	<person>
+		<name>쁘렉딱</name><gender>미들</gender><part>오르간</part>
+	</person>
+</people>

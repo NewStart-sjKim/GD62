@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSON 연습</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn").click(function(){
+			$.ajax({
+				url : "person.jsp",
+				success : function(data){
+					//data : 문자열 데이터
+					//[{},{},...] => 배열객체
+					let person = JSON.parse(data);
+					$.each(person,function(i,item){ //JSON 형태로 인식. 객체 생성
+						//item : {name:...}
+						$("#result").append("<ul>")
+						$("#result").append("<li>" + item.name + "</li>")
+						$("#result").append("<li>" + item.gender + "</li>")
+						$("#result").append("<li>" + item.part + "</li>")
+						$("#result").append("</ul>")
+						
+					})
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<button id="btn">JSON연습</button>
+	<div id="result"></div>
+</body>
+</html>

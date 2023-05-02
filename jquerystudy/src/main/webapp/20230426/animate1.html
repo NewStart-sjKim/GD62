@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> 컴포넌트 이동</title>
+<style type="text/css">
+	div {
+		width : 50px; height :50px;
+		background-color : orange;
+		position : relative;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$("div").hover(function(){
+		//$(this) : 마우스 커서를 가지고 있는 div 태그
+		//animate() : this 태그를 왼쪽 300 위치로 이동
+		$(this).animate({
+			left:3000
+		},'slow')
+	},function(){ //마우스가 영역 밖으로 나갈때
+		$(this).animate({
+			left:0
+		},'slow')
+	})
+})
+</script>
+</head>
+<body>
+<div></div><div></div>
+<div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+</body>
+</html>

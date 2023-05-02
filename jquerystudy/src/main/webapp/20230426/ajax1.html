@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XMLHttpReqeuest객체</title>
+<script type="text/javascript">
+	function loadJsp(){
+		/*
+			new XMLHttpRequest():ajax객체
+						서버에 요청할 수 있는 자바 스크립트 객체
+		*/
+		const xhttp = new XMLHttpRequest() //readyState : 0
+		//요청방식 : GET방식
+		//요청URL : test1.jsp
+		xhttp.open("GET","test1.jsp") //readyState : 1
+		xhttp.send() //서버로 요청함	  //readyState : 2
+		//onreadystatechange : 콜백 함수 등록 변수
+		//onreadystatechange : xhttp 객체의 상태가 변경시 자동 호출되는 함수
+		//						=> 콜백함수
+		xhttp.onreadystatechange=function(){
+			/*
+				readyState : ajax 상태
+					0	: 객체 생성
+					1	: open() 실행
+					2	: send() 실행. 서버요청상태. 서버응답이 없을때
+					3	: 서버응답 중. 일부 응답 중
+					4	: 서버응답 완료. 
+				status	   : 응답 결과. HTTP 응답 코드
+					200 : 정상응답
+					404 : 해당페이지 없음
+					500 : 해당페이지 오류발생
+			*/
+			if(this.readyState==4 && this.status==200){
+				//정상 응답 완료인 경우
+				//responseText : 서버에서 응답 메세지
+				alert(this.responseText)
+				document.querySelector("#demo").innerHTML=this.responseText
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<h2>XMLHttpRequest 객체</h2>
+	<button type="button" onclick="loadJsp()">요청</button>
+	<div id="demo"></div>
+</body>
+</html>

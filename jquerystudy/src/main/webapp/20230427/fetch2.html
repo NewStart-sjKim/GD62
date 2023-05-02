@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>fetch 함수 : 파라미터 전달</title>
+
+<script type="text/javascript">
+	function load(url) {
+		fetch(url)
+		//r.text() : 서버의 응답메세지 문자열 형태로 리턴
+		//r.json() : 서버의 응답메세지
+		.then((r) => r.json())
+		.then((data) => {
+			//data : 객체 형태. [] 이므로 배열객체
+			let area = document.querySelector("#area")
+			for ( s of data) {
+				area.innerHTML += "<p>" + s.author.book + ":" + s.author.pubDate + "</p>"
+			}
+		})
+	}
+	function load2(url) {
+		fetch(url)
+		.then((r) => r.text())
+		.then((t) => {
+			let data = JSON.parse(t)
+			let area = document.querySelector("#area")
+			for ( s of data) {
+				area.innerHTML += "<p>" + s.author.book + ":" + s.author.pubDate + "</p>"
+			}
+		})
+	}
+	
+</script>
+</head>
+<body>
+	<input type="button" value="json읽기" onclick="load('../20230426/test.json')">
+	<input type="button" value="json읽기" onclick="load2('../20230426/test.json')">
+	<div id="area"></div>
+</body>
+</html>

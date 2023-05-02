@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+ examtest.jsp 에서 -~99 사이의 임의의 값을 10개 생성하여 ,로 연결하여
+ ajax을 통해 현재 페이지에 전송하기.
+ exam.html 에서 ajax을 통해 현재 페이지에 전송하기.
+ exam.html 에서 콜백함수에서 숫자 중 가장 큰 값을 찾아서 출력하기
+ -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/ajax.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		ajax("examtest.jsp",null,getMax,"GET")
+	}
+	function getMax(){
+		if(this.readyState == 4 && this.status == 200){
+			console.log(this.responseText)
+			const nums = this.responseText.split(",")
+			let max = parseInt(nums[0].trim())// 첫번째 요소의 값으로 최대값 초기화
+			let min = parseInt(nums[0].trim())// 첫번째 요소의 값으로 최소값 초기화
+			for(let i=1;i < nums.length;i++){
+				nums[i] = parseInt(nums[i].trim())
+				if(max < nums[i]) max = nums[i]
+				if(min > nums[i]) min = nums[i]
+			}
+		document.querySelector("#result").innerHTML = 
+			"<strong>["+this.responseText +"]중 최대값:" + max + "<br>["
+				+this.responseText + "]중 최대값:" + min + "</strong>"
+		}
+	}
+</script>
+</head>
+<body>
+	<div id="result"></div>
+</body>
+</html>

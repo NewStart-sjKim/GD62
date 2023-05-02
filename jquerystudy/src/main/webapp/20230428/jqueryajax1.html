@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>자동완성</title>
+<style type="text/css">
+	.listbox{
+		position : relative;
+		left : 10px;
+		margin : 10px;
+		width : 200px;
+		background-color : #EEEEEE;
+		color : #FF00FF;
+		border : 2pxsolid #000
+	}
+	.namelist{
+	margin : 0px; 
+	padding : 0px; 
+	list-style : nene;
+	}
+	.hover{
+		background-color : cyan;
+		color : blue;
+	}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$(".listbox").hide() //.listbox 태그를 안보이도록 설정
+		$("#id").keyup(function(){ // 
+			let data = "id=" + $("#id").val(); //입력된 id값
+				$.ajax({
+					url : "idlist.jsp",
+					type : "POST",
+					data : data,
+					success : function(html){
+				//html : <ul><li>admin</li>...</ul>
+						$(".listbox").show()
+						$(".namelist").html(html)
+						$("li").hover(function(){
+							$(this).addClass("hover") //Class="hover"추가
+						},function(){
+							$(this).removeClass("hover")
+						})
+						$("li").click(function(){
+							$("#id").val($(this).text())
+							$(".listbox").hide()
+						})
+					},
+					error : function(e){
+						alert("서버 오류 :" + e.status)
+					}
+				})
+				
+		})
+	})
+</script>
+</head>
+<body>
+	<span>사용자 아이디</span>
+	<input type="text" name="id" id="id">
+	<div class="listbox">
+		<div class="namelist">
+		</div>
+	</div>
+</body>
+</html>

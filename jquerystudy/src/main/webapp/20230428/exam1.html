@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#btn").click(function(){
+			$.ajax({
+				url : "house.jsp",
+				success : function(data){
+					let house = JSON.parse(data); //house : 객체 . properties 배열
+					let htmldata = "<table border='1'>"
+					+"<tr><th>주소</th><th>가격</th><th>특징</th></tr>";
+					//house.properties : 배열객체
+					$.each(house.properties,function(idex,item){
+						htmldata += "<tr><td>" + item.address +
+									"</td><td>" + item.price +
+									"</td><td>" + item.comment + "</td></tr>"
+					})
+					htmldata +="</table>"
+					$("#result").html(htmldata);
+				},
+				error : function(e){
+					alert("서버오류 :" + e.status)
+				}
+			})
+		})
+	})
+</script>
+<title>JSON 연습</title>
+</head>
+<body>
+	<button id="btn">House 정보</button>
+	<div id="result"></div>
+</body>
+</html>

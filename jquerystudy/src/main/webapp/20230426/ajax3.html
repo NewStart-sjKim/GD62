@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>XMLHttpReqeuest 객체를 통한 요청</title>
+<script type="text/javascript">
+	function load(url){
+		const xhttp = new XMLHttpRequest()
+			xhttp.open("GET",url)
+			xhttp.send()
+			xhttp.onreadystatechange=callBack
+	}
+	function callBack(){
+		if(this.readyState == 4 && this.status == 200){
+			let area = document.querySelector("#area")//div 태그
+			/*
+			responseText :
+				[] 배열
+				[{ "author": { "book": "ajax", "pubDate": "2023-04-26" }},
+				 { "author": { "book": "자바","pubDate": "2023-02-01" }},
+				 { "author": { "book": "웹", "pubDate": "2023-03-20"}}]
+			json객체 <= JSON>parse(문자열)
+			data : json 객체.배열
+			*/
+			let data = JSON.parse(this.responseText)
+			//s : { "author": { "book": "ajax", "pubDate": "2023-04-26" }}
+			//s.author : { "book": "ajax", "pubDate": "2023-04-26" }
+			//s.author.book : ajax
+			//s.author.pubDate : ajax
+			for(s of data){
+				area.innerHTML += '<p>' + s.author.book + ":" + s.author.pubDate + '</p>'
+			}
+		}
+	}
+</script>
+</head>
+<body>
+<input type="button" value="json읽기" onclick="load('test.json')">
+	<div id="area"></div>
+</body>
+</html>
